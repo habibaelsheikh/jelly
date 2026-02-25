@@ -1,0 +1,18 @@
+<jelly xmlns:j="jelly:core" trim="true"><set var="your_name" value="Test"></set><choose><when test="false"><p>Welcome,Test</p></when><when test="false"><p>Welcome,Test One</p></when><when test="false"><p>Welcome,Test two</p></when><otherwise><p>Welcome,</p></otherwise></choose><switch><case value="Test"><p>Welcome , Test</p></case><case value="Test One"><p>Welcome , Test One</p></case><case value="Test Two"><p>Welcome , Test Two</p></case><default><p> Welcome , </p></default></switch><forEach end="20" var="index_count" begin="0" step="2"><p></p></forEach><set var="name" value="Test"></set><div><expr value="Try Expr , hello"></expr></div><set var="names" value="['Name 1','Name 2','Name 3']"></set><forEach var="current_name">
+Name: <br></br></forEach><new var="names" className="java.util.ArrayList"></new><invoke method="add"><arg value="Name 1"></arg></invoke><invoke method="add"><arg value="Name 2"></arg></invoke><invoke method="add"><arg value="Name 3"></arg></invoke><invoke method="add"><arg value="Name 4"></arg></invoke><forEach var="current_name">
+Name: <br></br></forEach><new var="now" className="java.util.Date"></new>
+ current date/Time <br></br><invoke var="timestamp" method="getTime"></invoke>
+ timestamp: 1772011622719<br></br><new var="formatDate" className="java.text.SimpleDateFormat"><arg value="MM/dd/yyyy"></arg></new><invoke var="formatDate2" method="format"><arg></arg></invoke><p>formatDate: </p><getStatic var="pi" className="java.lang.Math" field="PI"></getStatic><p></p><invokeStatic var="maxValue" className="java.lang.Math" method="max"><arg type="int" value="10"></arg><arg type="int" value="20"></arg></invokeStatic><p></p><invokeStatic var="roundNum" className="java.lang.Math" method="round"><arg type="float" value="10.64593"></arg></invokeStatic><p></p><new var="builder" className="java.lang.StringBuilder"></new><invoke method="append"><arg value="Hello "></arg></invoke><invoke method="append"><arg value="World"></arg></invoke>
+
+message: 
+
+
+
+
+
+<new var="user" className="java.util.HashMap"></new><invoke method="put"><arg value="name"></arg><arg value="Your name"></arg></invoke>
+
+
+<p>Age: </p><invoke var="entries" method="entrySet"></invoke><forEach var="entry"><invoke var="key" method="getKey"></invoke><invoke var="value" method="getValue"></invoke>
+:
+</forEach></jelly>

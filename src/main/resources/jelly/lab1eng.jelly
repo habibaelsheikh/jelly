@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<jelly trim="true" xmlns:j="jelly:core">
+    
+<set var="your_name" value="Test" />
+<choose>
+<when test="${your_name eq 'Test'}">
+<p>Welcome,Test</p>
+</when>
+<when test="${your_name eq 'Test One'}">
+<p>Welcome,Test One</p>
+</when>
+<when test="${your_name eq 'Test two'}">
+<p>Welcome,Test two</p>
+</when>
+<otherwise>
+<p>Welcome,${your_name}</p>
+</otherwise>
+</choose>
+
+<!-- Switch case -->
+<switch on="${your_name}">
+<case value='Test'>
+<p> Welcome , Test</p>
+</case>
+<case value='Test One'>
+<p> Welcome , Test One</p>
+</case>
+<case value='Test Two'>
+<p> Welcome , Test Two</p>
+</case>
+<default>
+<p> Welcome , ${your_name}</p>
+</default>
+</switch>
+
+<!-- For Index -->
+<forEach var='index_count' begin='0' end='20' step='2'>
+<p>${index_count}</p>
+</forEach>
+
+<!-- Expr -->
+<set var='name' value='Test' />
+<div>
+<expr value="Try Expr ${name}, hello" />
+</div>
+
+<!-- Array -->
+<set var="names" value="['Name 1','Name 2','Name 3']" />
+<forEach var="current_name" items="${names}">
+Name: ${current_name}<br/>
+</forEach>
+
+<!-- Array List class -->
+<new className='java.util.ArrayList' var='names'/>
+<invoke on="${names}" method="add">
+<arg value='Name 1' />
+</invoke>
+<invoke on="${names}" method="add">
+<arg value='Name 2' />
+</invoke>
+<invoke on="${names}" method="add">
+<arg value='Name 3' />
+</invoke>
+<invoke on="${names}" method="add">
+<arg value='Name 4' />
+</invoke>
+
+<forEach var="current_name" items="${names}">
+Name: ${current_name}<br/>
+</forEach>
+ 
+ <!-- Date -->
+ <new className="java.util.Date" var="now"/>
+ current date/Time ${now}<br/>
+ <invoke on="${now}" method="getTime" var='timestamp'/>
+ timestamp: ${timestamp}<br/>
+ <new className="java.text.SimpleDateFormat" var="formatDate">
+ <arg value='MM/dd/yyyy' />
+ </new>
+ <invoke on="${formatDate}" method="format" var="formatDate2">
+ <arg value="${now}"/>
+ </invoke> 
+<p>formatDate: ${formatDate2}</p>
+
+<!-- Get Static -->
+<getStatic className="java.lang.Math" field='PI' var='pi'/>
+<p>${pi}</p>
+<!-- Invoke Static -->
+<invokeStatic className="java.lang.Math" var='maxValue' method='max'>
+<arg value='10' type='int'/>
+<arg value='20' type='int'/>
+</invokeStatic>
+<p>${maxValue}</p>
+
+<!-- Round -->
+<invokeStatic className="java.lang.Math" var='roundNum' method='round'>
+<arg value='10.64593' type='float'/>
+</invokeStatic>
+<p>${roundNum}</p>
+
+<!-- <new className="java.lang.Math" var='roundNum'>
+</new>
+<p>${roundNum.round(777.64)}</p> -->
+
+
+<!-- String Builder -->
+<new className="java.lang.StringBuilder" var="builder" />
+<invoke on="${builder}" method="append">
+<arg value='Hello ' />
+</invoke>
+<invoke on="${builder}" method="append">
+<arg value='World' />
+</invoke>
+${builder.append('ffff')}
+message: ${builder.toString()}
+${builder.length()}
+${builder}
+${builder.reverse()}
+
+<!-- HashMap As Object -->
+<new className="java.util.HashMap" var="user"/>
+<invoke on="${user}" method="put">
+<arg value='name'/>
+<arg value='Your name'/>
+</invoke>
+${user.put('age','40')}
+${user.put('city','FFF')}
+<p>Age: ${user.get('age')}</p>
+<invoke on='${user}' var='entries' method='entrySet'/>
+<forEach var="entry" items="${entries}">
+<invoke on="${entry}" method="getKey" var="key"/>
+<invoke on="${entry}" method="getValue" var="value"/>
+${key}:${value}
+</forEach>
+</jelly>
