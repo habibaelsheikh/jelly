@@ -4,5 +4,18 @@
     <p>FIRST ZEFT ${SF.hello('habiba')}</p>
     <p>today's date: ${SF.today()}</p>
         <p>is 3 even: ${SF.isEven(3)}</p>
+        <p>cap john is  ${SF.cap("john")}</p>
+        <p>cap john is five years of age :  ${SF.capall("cap john is five years of age ")}</p>
+<![CDATA[ 
+    <script>
+        function sum(a,b){
+            if(a < b){
+                return 0;
+            }
+            return a+b;
+        }
+            console.log(1,2);
+    </script>
+]]>
 
 </j:jelly>

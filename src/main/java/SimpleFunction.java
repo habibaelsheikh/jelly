@@ -26,5 +26,18 @@ public class SimpleFunction {
             return false;
         }
     }
+    public String cap(String s){
+
+            return s.substring(0, 1).toUpperCase() + s.substring(1);
+
+    }
+        public String capall(String s){
+            String finalstring = "";
+            String[] words = s.split("\\s+");
+            for (String word : words) {
+                finalstring += word.substring(0, 1).toUpperCase() + word.substring(1) + " ";
+            }
+            return finalstring.trim();
+        }
 
 }
